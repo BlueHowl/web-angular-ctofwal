@@ -6,6 +6,9 @@ import { Component, Input } from '@angular/core';
   styleUrl: './zone-item.component.css'
 })
 export class ZoneItemComponent {
+  handleGetDetails(){
+    console.log('click')
+  };
   @Input() xPosition: number = 0;
   @Input() yPosition: number = 0;
 }
