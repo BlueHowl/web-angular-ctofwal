@@ -5,18 +5,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CityMapComponent } from '../lib/map/map.component';
 import { ZoneItemComponent } from '../lib/zone-item/zone-item.component';
+import { FieldsetModule } from 'primeng/fieldset';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
     CityMapComponent,
-    ZoneItemComponent
+    ZoneItemComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    FieldsetModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
