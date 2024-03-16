@@ -8,14 +8,20 @@ import { Component, Input, OnInit } from '@angular/core';
 
 export class CityMapComponent implements OnInit {
   @Input() mapArgs: any = null;
-  cityImageUrl = '';
+  cityImageUrl: string = '';
+  pois: Array<any> = [];
 
-  topLeftCorner: any = this.mapArgs?.topLeftCorner;
-  bottomRightCorner: any = this.mapArgs?.bottomRightCorner;
+  topLeftCorner: any = {};
+  bottomRightCorner: any = {};
+  
 
   constructor() { }
   ngOnInit(): void {
     this.cityImageUrl = 'assets/img/' + this.mapArgs?.img || '';
+    this.pois = this.mapArgs?.pois || [];
+    this.topLeftCorner = this.mapArgs?.topLeftCorner;
+    this.bottomRightCorner = this.mapArgs?.bottomRightCorner;
+    
   }
 }
 
