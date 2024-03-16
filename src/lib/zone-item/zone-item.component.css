@@ -2,6 +2,9 @@
     position: absolute;
     border: 1px solid #000;
 }
+.absolute{
+    position: absolute
+}
 
 .text {
 position: absolute;
