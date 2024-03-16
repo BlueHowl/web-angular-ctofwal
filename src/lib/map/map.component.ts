@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class CityMapComponent implements OnInit {
+  cityImageUrl = 'assets/img/map-charleroi.png';
+
   constructor() { }
   ngOnInit(): void {
   }
