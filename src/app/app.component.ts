@@ -16,19 +16,25 @@ export class AppComponent {
       {
         id: 0,
         name: 'Hotel de ville de charleroi',
-        img: 'hotel.png',
+        img: 'hotel-ville.png',
         coordinate: { lat: 50.41192225838149, lng: 4.444018139827997 }
       },
       {
         id: 1,
         name: 'A6K - Charleroi',
-        img: 'a6k.png',
-        coordinate: { lat: 50.40508061318812, lng: 4.439906300111793 }
+        img: 'e6k.png',
+        coordinate: { lat: 50.40480516118629, lng: 4.441795600400596 }
+      },
+      {
+        id: 2,
+        name: 'test 0 : 0 top left',
+        img: 'pinpoint.png',
+        coordinate: { lat: 50.50118509830947, lng: 4.345420925564241 }
       },
       {
         id: 3,
         name: 'test outisde map',
-        img: 'testO.png',
+        img: 'pinpoint.png',
         coordinate: { lat: 50.364209, lng: 4.546653 }
       }
     ]

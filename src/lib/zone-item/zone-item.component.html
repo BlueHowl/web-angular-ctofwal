@@ -1,6 +1,6 @@
 
-<img class="zone-container" src="../../assets/img/pinpoint.png" alt="Your Image" 
-(click)="handleGetDetails()" [style.left.px]="xPosition" [style.top.px]="yPosition" [style.width.px]="width" [style.height.px]="height">
+<img class="zone-container" 
+(click)="handleGetDetails()" [src]="pinImg.src" alt="Your Image" [style.left.px]="centerdX" [style.top.px]="centerdY">
 
 
 <p-dialog header="Header" [(visible)]="!isBlackAndWhite && isModalVisible" [modal]="true" [style]="{ width: '50rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">

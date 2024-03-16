@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'zone-item',
@@ -6,6 +6,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
   styleUrl: './zone-item.component.css'
 })
 export class ZoneItemComponent {
+  @Input() point: any = {};
   isBlackAndWhite: boolean = false;
   isModalVisible: boolean = false;
 
@@ -15,9 +16,21 @@ export class ZoneItemComponent {
     console.log('isVisible' + this.isModalVisible)
     console.log('is B&W' + this.isBlackAndWhite)
   }
+  pinImg: any = new Image();
 
-  @Input() xPosition: number = 0;
-  @Input() yPosition: number = 0;
-  @Input() height: number = 100;
-  @Input() width: number = 100;
+  centerdX = 0;
+  centerdY = 0;
+
+  constructor() { }
+  ngOnInit(): void {
+
+    this.pinImg.src = 'assets/img/poi/' + this.point?.img || '';
+
+    this.pinImg.onload = () => {
+      //Centre le point sur le milieu de l'image
+      this.centerdX = this.point.position.x - (50 / 2); //TODO changed 100 to img width in view
+      this.centerdY = this.point.position.y - 50; //TODO changed 100 to img height in view
+    };
+    
+  }
 }
