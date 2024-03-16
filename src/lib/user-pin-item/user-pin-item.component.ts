@@ -25,15 +25,14 @@ export class UserPinItemComponent {
   get currentUserPosition(): XYPosition {
     return this._currentUserPosition;
   }
+  
   constructor(private cdr:ChangeDetectorRef) { }
 
   updateChildComponent() {
-    console.log("updateChildComponent");
     //Centre le point sur le milieu de l'image
     this.centerdX = this.currentUserPosition.x - (50/2); //TODO changed 100 to img width in view
     this.centerdY = this.currentUserPosition.y - (50/2) - 20; //TODO changed 100 to img height in view
     this.cdr.detectChanges();
-    console.log(this.centerdX + " : " + this.centerdY)
   }
 
 

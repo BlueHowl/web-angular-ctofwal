@@ -1,11 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit, ViewContainerRef } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
+  constructor(
+    private viewContainerRef: ViewContainerRef,
+    private componentFactoryResolver: ComponentFactoryResolver
+  ) { }
+
+  ngOnInit() {
+    setTimeout(() => {
+      const factory = this.componentFactoryResolver.resolveComponentFactory(AppComponent);
+      this.viewContainerRef.clear();
+      this.viewContainerRef.createComponent(factory);
+    }, 3000); // Replace the splash screen with the app component after 3 seconds
+  }
+
   title = 'CityConquest';
 
   caroloMap = {

@@ -1,10 +1,9 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Coordinate } from '../../types/Coordinate';
 import { XYPosition } from '../../types/XYPosition';
 import proj4 from 'proj4';
 import { Geolocation } from '@capacitor/geolocation';
 import { UserPinItemComponent } from '../user-pin-item/user-pin-item.component';
-import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -13,8 +12,10 @@ import { Subscription } from 'rxjs';
   styleUrl: './map.component.css'
 })
 
-export class CityMapComponent implements OnInit {
+export class CityMapComponent implements OnInit, OnDestroy {
   @Input() mapArgs: any = null;
+
+  private locationListener: any;
 
   mapImg: any = new Image();
   pois: Array<any> = [];
@@ -67,6 +68,10 @@ export class CityMapComponent implements OnInit {
     return { x: point[0], y: point[1] };
   }
 
+
+  /**
+   * Met à jour la position de l'utilisateur sur le composant enfant
+   */
   @ViewChild (UserPinItemComponent) userPin:UserPinItemComponent | undefined
   updateCurrentPosition = async (position: XYPosition) => {
     const currentUserPosition = this.getXYPosition({ lat: position.x, lng: position.y });
@@ -97,7 +102,7 @@ export class CityMapComponent implements OnInit {
 
 
       //Met à jour la position de l'utilisateur
-      Geolocation.watchPosition({
+      this.locationListener = Geolocation.watchPosition({
         enableHighAccuracy: true,
         maximumAge: 1000,
         //distanceFilter: 0,
@@ -108,10 +113,13 @@ export class CityMapComponent implements OnInit {
         }
   
         this.updateCurrentPosition({x: position!.coords.latitude, y: position!.coords.longitude});
-        console.log('Current position:', position?.coords.latitude, position?.coords.longitude);
       });
+
     };
-    
+  }
+
+  ngOnDestroy(): void {
+    Geolocation.clearWatch({ id: this.locationListener });
   }
 }
 

@@ -12,13 +12,15 @@ import { ButtonModule } from 'primeng/button';
 import { AvatarModule } from 'primeng/avatar';
 import { CheckboxModule } from 'primeng/checkbox';
 import { UserPinItemComponent } from '../lib/user-pin-item/user-pin-item.component';
+import { SplashScreenComponent } from '../lib/splash-screen/splash-screen.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CityMapComponent,
     ZoneItemComponent,
-    UserPinItemComponent
+    UserPinItemComponent,
+    SplashScreenComponent,
   ],
   imports: [
     BrowserModule,
