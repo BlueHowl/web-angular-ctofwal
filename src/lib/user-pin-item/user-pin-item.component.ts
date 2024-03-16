@@ -7,6 +7,10 @@ import { XYPosition } from '../../types/XYPosition';
   styleUrl: './user-pin-item.component.css'
 })
 export class UserPinItemComponent {
+  pinImg: any = new Image();
+
+  centerdX = 0;
+  centerdY = 0;
   //currentUserPosition: XYPosition = { x: 0, y: 0 };
 
   //@Input() position: XYPosition = { x: 0, y: 0 };
@@ -31,11 +35,6 @@ export class UserPinItemComponent {
     this.cdr.detectChanges();
     console.log(this.centerdX + " : " + this.centerdY)
   }
-
-  pinImg: any = new Image();
-
-  centerdX = 0;
-  centerdY = 0;
 
 
   ngOnInit(): void {

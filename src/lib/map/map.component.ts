@@ -4,6 +4,7 @@ import { XYPosition } from '../../types/XYPosition';
 import proj4 from 'proj4';
 import { Geolocation } from '@capacitor/geolocation';
 import { UserPinItemComponent } from '../user-pin-item/user-pin-item.component';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -17,8 +18,6 @@ export class CityMapComponent implements OnInit {
 
   mapImg: any = new Image();
   pois: Array<any> = [];
-
-  currentUserPosition: XYPosition = { x: 0, y: 0 };
 
   /**
    * Vérifie si une coordonnée est dans la map
@@ -67,13 +66,10 @@ export class CityMapComponent implements OnInit {
 
     return { x: point[0], y: point[1] };
   }
+
   @ViewChild (UserPinItemComponent) userPin:UserPinItemComponent | undefined
-  updateCurrentPosition = async () => {
-    const coordinates = await Geolocation.getCurrentPosition();
-  
-    const currentUserPosition = this.getXYPosition({ lat: coordinates.coords.latitude, lng: coordinates.coords.longitude });
-    console.log('Current User position:', { lat: coordinates.coords.latitude, lng: coordinates.coords.longitude });
-    console.log('Current User position in pixels:', currentUserPosition);
+  updateCurrentPosition = async (position: XYPosition) => {
+    const currentUserPosition = this.getXYPosition({ lat: position.x, lng: position.y });
     this.userPin!.currentUserPosition = currentUserPosition;
   };
 
@@ -99,11 +95,21 @@ export class CityMapComponent implements OnInit {
         }
       });
 
-      console.log(this.pois);
 
-      // Met à jour la position actuelle une fois puis toutes les 5 secondes
-      this.updateCurrentPosition();
-      setInterval(this.updateCurrentPosition, 5000);
+      //Met à jour la position de l'utilisateur
+      Geolocation.watchPosition({
+        enableHighAccuracy: true,
+        maximumAge: 1000,
+        //distanceFilter: 0,
+      }, (position, err) => {
+        if (err) {
+          console.error('Error getting position:', err);
+          return;
+        }
+  
+        this.updateCurrentPosition({x: position!.coords.latitude, y: position!.coords.longitude});
+        console.log('Current position:', position?.coords.latitude, position?.coords.longitude);
+      });
     };
     
   }
