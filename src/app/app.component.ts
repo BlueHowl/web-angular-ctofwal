@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'CityConquest';
+
+  caroloMap = {
+    img: 'map-charleroi.png',
+    topLeftCorner: { lat: 0, lng: 0 },
+    bottomRightCorner: { lat: 0, lng: 0 }
+  }
 }

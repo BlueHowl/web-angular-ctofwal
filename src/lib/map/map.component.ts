@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'city-map',
@@ -7,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class CityMapComponent implements OnInit {
-  cityImageUrl = 'assets/img/map-charleroi.png';
+  @Input() mapArgs: any = null;
+  cityImageUrl = '';
+
+  topLeftCorner: any = this.mapArgs?.topLeftCorner;
+  bottomRightCorner: any = this.mapArgs?.bottomRightCorner;
 
   constructor() { }
   ngOnInit(): void {
+    this.cityImageUrl = 'assets/img/' + this.mapArgs?.img || '';
   }
 }
 
