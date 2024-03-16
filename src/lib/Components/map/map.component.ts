@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { Coordinate } from '../../types/Coordinate';
-import { XYPosition } from '../../types/XYPosition';
+import { Coordinate } from '../../../types/Coordinate';
+import { XYPosition } from '../../../types/XYPosition';
 import proj4 from 'proj4';
 import { Geolocation } from '@capacitor/geolocation';
 import { UserPinItemComponent } from '../user-pin-item/user-pin-item.component';
