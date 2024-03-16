@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Coordinate } from '../../types/Coordinate';
 import { XYPosition } from '../../types/XYPosition';
 import proj4 from 'proj4';
 import { Geolocation } from '@capacitor/geolocation';
+import { UserPinItemComponent } from '../user-pin-item/user-pin-item.component';
 
 
 @Component({
@@ -66,13 +67,14 @@ export class CityMapComponent implements OnInit {
 
     return { x: point[0], y: point[1] };
   }
-
+  @ViewChild (UserPinItemComponent) userPin:UserPinItemComponent | undefined
   updateCurrentPosition = async () => {
     const coordinates = await Geolocation.getCurrentPosition();
   
     const currentUserPosition = this.getXYPosition({ lat: coordinates.coords.latitude, lng: coordinates.coords.longitude });
     console.log('Current User position:', { lat: coordinates.coords.latitude, lng: coordinates.coords.longitude });
     console.log('Current User position in pixels:', currentUserPosition);
+    this.userPin!.currentUserPosition = currentUserPosition;
   };
 
 
