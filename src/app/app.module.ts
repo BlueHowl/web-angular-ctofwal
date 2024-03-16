@@ -7,6 +7,9 @@ import { CityMapComponent } from '../lib/map/map.component';
 import { ZoneItemComponent } from '../lib/zone-item/zone-item.component';
 import { FieldsetModule } from 'primeng/fieldset';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
+import { AvatarModule } from 'primeng/avatar';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    FieldsetModule
+    FieldsetModule,
+    DialogModule,
+    ButtonModule,
+    AvatarModule
   ],
   providers: [],
   bootstrap: [AppComponent],

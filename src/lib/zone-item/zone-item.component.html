@@ -1,4 +1,39 @@
-<div (click)="handleGetDetails()">
-    <img class="zone-container" [src]="pinImg.src" alt="Your Image" [style.left.px]="centerdX" [style.top.px]="centerdY">
-</div>
 
+<img class="zone-container" 
+(click)="handleGetDetails()" [src]="pinImg.src" alt="Your Image" [style.left.px]="centerdX" [style.top.px]="centerdY">
+
+
+<p-dialog header="Header" [(visible)]="isModalVisible" [modal]="true" [style]="{ width: '50rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+    <ng-template pTemplate="header">
+        <div class="inline-flex align-items-center justify-content-center gap-2">
+            <div *ngIf="isBlackAndWhite">
+                <p-avatar image="{{HeaderImgChallenge}}" shape="circle" />
+                <span class="font-bold white-space-nowrap">{{HeaderContentChallenge}}</span>
+            </div>
+            <div *ngIf="!isBlackAndWhite">
+                <p-avatar image="{{HeaderImg}}" shape="circle" />
+                <span class="font-bold white-space-nowrap">{{HeaderContent}}</span>
+            </div>
+            
+        </div>
+    </ng-template>
+    <div *ngIf="isBlackAndWhite">
+        <p class="m-0">
+            {{BodyChallenge}}
+      </p>
+    </div>
+    <div *ngIf="!isBlackAndWhite">
+        <p class="m-0">
+            {{Body}}
+      </p>
+    </div>
+    <ng-template pTemplate="footer">
+        <div *ngIf="isBlackAndWhite">
+            <p-button icon="pi pi-check" (click)="OnConfirmChallenge()" label="Confirm" pAutoFocus [autofocus]="true"></p-button>
+            <p-button icon="pi pi-check" (click)="isModalVisible = false" label="Quit" pAutoFocus [autofocus]="true"></p-button>
+        </div>
+        <div *ngIf="!isBlackAndWhite">
+            <p-button icon="pi pi-check" (click)="isModalVisible = false" label="Ok" pAutoFocus [autofocus]="true"></p-button>
+        </div>
+    </ng-template>
+</p-dialog>
