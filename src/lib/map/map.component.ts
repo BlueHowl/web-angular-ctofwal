@@ -105,7 +105,7 @@ export class CityMapComponent implements OnInit, OnDestroy {
       this.locationListener = Geolocation.watchPosition({
         enableHighAccuracy: true,
         maximumAge: 1000,
-        //distanceFilter: 0,
+        timeout: 10000
       }, (position, err) => {
         if (err) {
           console.error('Error getting position:', err);
