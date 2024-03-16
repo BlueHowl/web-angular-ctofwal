@@ -5,4 +5,6 @@ export interface PinPoint {
     name: string;
     img: string;
     position: XYPosition
+    body:string,
+    bodyChallenge:string[],
 }

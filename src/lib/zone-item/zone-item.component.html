@@ -18,14 +18,17 @@
         </div>
     </ng-template>
     <div *ngIf="isBlackAndWhite">
-        <p class="m-0">
-            {{BodyChallenge}}
-      </p>
+        @for (item of BodyChallenge; track item.valueOf()) {
+            <p-checkbox [binary]="true" inputId="binary" value="{{item}}" label="{{item}}"></p-checkbox>
+        }
     </div>
     <div *ngIf="!isBlackAndWhite">
-        <p class="m-0">
-            {{Body}}
-      </p>
+        <div class="col-md-6">
+            <img class="img-content" src="{{HeaderImg}} ">
+        </div>
+        <div class="col-md-6">
+            <p>{{Body}}</p>
+        </div>
     </div>
     <ng-template pTemplate="footer">
         <div *ngIf="isBlackAndWhite">

@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { AvatarModule } from 'primeng/avatar';
+import { CheckboxModule } from 'primeng/checkbox';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AvatarModule } from 'primeng/avatar';
     FieldsetModule,
     DialogModule,
     ButtonModule,
-    AvatarModule
+    AvatarModule,
+    CheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent],
