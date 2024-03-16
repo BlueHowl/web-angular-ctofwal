@@ -42,11 +42,14 @@ OnConfirmChallenge() {
       this.centerdX = this.point.position.x - (50/2) ; //TODO changed 100 to img width in view
       this.centerdY = this.point.position.y - (50/2) - 20; //TODO changed 100 to img height in view
     };
-    this.HeaderContent = this.content?.HeaderContent ||"Unlocked"
-    this.HeaderImg = this.content?.HeaderImg||""
-    this.Body = this.content?.Body||""
-    this.HeaderContentChallenge = this.content?.HeaderContentChallenge||"Quest"
+
+    this.HeaderImg ='assets/img/poi/' + this.point.img;
     this.HeaderImgChallenge = this.content?.HeaderImgChallenge||""
-    this.BodyChallenge=this.content?.BodyChallenge||""
+
+    this.HeaderContent = this.point?.name + " - Unlocked"||"Unlocked"
+    this.HeaderContentChallenge = this.point?.name + " - Quest"||"Quest"
+
+    this.Body = this.point?.body||""
+    this.BodyChallenge=this.point?.bodyChallenge||["test","test2"]
   }
 }
