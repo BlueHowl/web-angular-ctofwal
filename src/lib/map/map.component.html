@@ -1,11 +1,10 @@
-  <div id="map" class="content">
-    <img [src]="cityImageUrl" alt="Image de la carte de la ville">
+  <div id="map-holder" class="content">
+    <img id="map" [src]="mapImg.src" alt="Image de la carte de la ville">
     <div id="poi-list">
       
       @for (item of pois; track item.id) {
         <!--TODO convert coordinate into xy pos-->
-        {{item?.name}}
-        <zone-item [xPosition]="item?.coordinate.lat" [yPosition]="item?.coordinate.lng"></zone-item>
+        <zone-item [xPosition]="item?.position.x" [yPosition]="item?.position.y"></zone-item>
       }
     </div>
   </div>
