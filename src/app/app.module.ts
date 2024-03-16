@@ -10,12 +10,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { AvatarModule } from 'primeng/avatar';
+import { UserPinItemComponent } from '../lib/user-pin-item/user-pin-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CityMapComponent,
     ZoneItemComponent,
+    UserPinItemComponent
   ],
   imports: [
     BrowserModule,

@@ -5,5 +5,7 @@
       @for (item of pois; track item.id) {
         <zone-item [point]="item"></zone-item>
       }
+      
+      <user-pin-item [currentUserPosition]="currentUserPosition"></user-pin-item>
     </div>
   </div>

@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Coordinate } from '../../types/Coordinate';
 import { XYPosition } from '../../types/XYPosition';
 import proj4 from 'proj4';
+import { Geolocation } from '@capacitor/geolocation';
+
 
 @Component({
   selector: 'city-map',
@@ -14,6 +16,8 @@ export class CityMapComponent implements OnInit {
 
   mapImg: any = new Image();
   pois: Array<any> = [];
+
+  currentUserPosition: XYPosition = { x: 0, y: 0 };
 
   /**
    * Vérifie si une coordonnée est dans la map
@@ -48,7 +52,7 @@ export class CityMapComponent implements OnInit {
     let flat = this.geoToFlat(coordinate.lng, coordinate.lat);
   
     // Map the flat coordinates to pixel coordinates
-    let x = (flat.x * scaleX) + translateX;
+    let x = Math.abs((flat.x * scaleX) + translateX);
     let y = Math.abs((flat.y * scaleY) + translateY);
   
     return { x, y };
@@ -62,6 +66,14 @@ export class CityMapComponent implements OnInit {
 
     return { x: point[0], y: point[1] };
   }
+
+  updateCurrentPosition = async () => {
+    const coordinates = await Geolocation.getCurrentPosition();
+  
+    const currentUserPosition = this.getXYPosition({ lat: coordinates.coords.latitude, lng: coordinates.coords.longitude });
+    console.log('Current User position:', { lat: coordinates.coords.latitude, lng: coordinates.coords.longitude });
+    console.log('Current User position in pixels:', currentUserPosition);
+  };
 
 
   constructor() { }
@@ -86,6 +98,10 @@ export class CityMapComponent implements OnInit {
       });
 
       console.log(this.pois);
+
+      // Met à jour la position actuelle une fois puis toutes les 5 secondes
+      this.updateCurrentPosition();
+      setInterval(this.updateCurrentPosition, 5000);
     };
     
   }
