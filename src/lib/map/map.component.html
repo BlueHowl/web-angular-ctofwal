@@ -3,8 +3,7 @@
     <div id="poi-list">
       
       @for (item of pois; track item.id) {
-        <!--TODO convert coordinate into xy pos-->
-        <zone-item [xPosition]="item?.position.x" [yPosition]="item?.position.y"></zone-item>
+        <zone-item [point]="item"></zone-item>
       }
     </div>
   </div>
