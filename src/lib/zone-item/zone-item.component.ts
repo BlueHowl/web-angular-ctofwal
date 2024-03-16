@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectorRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'zone-item',
@@ -8,18 +8,17 @@ import { Component, Input } from '@angular/core';
 export class ZoneItemComponent {
 OnConfirmChallenge() {
   this.isModalVisible = false
-  this.isBlackAndWhite = false
+  this.isBlackAndWhite= (false);
+  this.cdr.detectChanges();
 }
+
   @Input() point: any = {};
   @Input() content: any={};
   isBlackAndWhite: boolean = true;
   isModalVisible: boolean = false;
 
   handleGetDetails() {
-    this.isModalVisible = !this.isModalVisible; // Show text when image is clicked
-    console.log('details')
-    console.log('isVisible' + this.isModalVisible)
-    console.log('is B&W' + this.isBlackAndWhite)
+    this.isModalVisible = !this.isModalVisible;
   }
   pinImg: any = new Image();
 
@@ -33,7 +32,7 @@ OnConfirmChallenge() {
   HeaderImgChallenge:string="";
   BodyChallenge:string="";
 
-  constructor() { }
+  constructor(private cdr:ChangeDetectorRef) { }
   ngOnInit(): void {
 
     this.pinImg.src = 'assets/img/pinpoint.png'; //poi/' + this.point?.img || '';
