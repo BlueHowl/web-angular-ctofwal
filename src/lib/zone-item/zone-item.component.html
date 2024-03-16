@@ -3,7 +3,7 @@
 (click)="handleGetDetails()" [src]="pinImg.src" alt="Your Image" [style.left.px]="centerdX" [style.top.px]="centerdY">
 
 
-<p-dialog class="Mymodal" header="Header" [(visible)]="isModalVisible" [modal]="true" [style]="{ width:'50vw' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+<p-dialog class="Mymodal" header="Header" [(visible)]="isModalVisible" [modal]="true" [style]="{ width:'50vw' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [dismissableMask]="true">
     <ng-template pTemplate="header">
         <div class="inline-flex align-items-center justify-content-center gap-2">
             <div *ngIf="isBlackAndWhite">
