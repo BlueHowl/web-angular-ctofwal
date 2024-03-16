@@ -6,8 +6,13 @@ import { Component, Input } from '@angular/core';
   styleUrl: './zone-item.component.css'
 })
 export class ZoneItemComponent {
+OnConfirmChallenge() {
+  this.isModalVisible = false
+  this.isBlackAndWhite = false
+}
   @Input() point: any = {};
-  isBlackAndWhite: boolean = false;
+  @Input() content: any={};
+  isBlackAndWhite: boolean = true;
   isModalVisible: boolean = false;
 
   handleGetDetails() {
@@ -21,6 +26,13 @@ export class ZoneItemComponent {
   centerdX = 0;
   centerdY = 0;
 
+  HeaderContent:string= "";
+  HeaderImg:string="";
+  Body:string="";
+  HeaderContentChallenge:string="";
+  HeaderImgChallenge:string="";
+  BodyChallenge:string="";
+
   constructor() { }
   ngOnInit(): void {
 
@@ -31,6 +43,11 @@ export class ZoneItemComponent {
       this.centerdX = this.point.position.x - (50 / 2); //TODO changed 100 to img width in view
       this.centerdY = this.point.position.y - 50; //TODO changed 100 to img height in view
     };
-    
+    this.HeaderContent = this.content?.HeaderContent ||"Unlocked"
+    this.HeaderImg = this.content?.HeaderImg||""
+    this.Body = this.content?.Body||""
+    this.HeaderContentChallenge = this.content?.HeaderContentChallenge||"Quest"
+    this.HeaderImgChallenge = this.content?.HeaderImgChallenge||""
+    this.BodyChallenge=this.content?.BodyChallenge||""
   }
 }
