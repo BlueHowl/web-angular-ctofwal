@@ -15,9 +15,6 @@ export class CityMapComponent implements OnInit {
   mapImg: any = new Image();
   pois: Array<any> = [];
 
-  deltaLat: number = 0;
-  deltaLng: number = 0;
-
   /**
    * Vérifie si une coordonnée est dans la map
    * @param coordinate (Coordinate) Lat et Lng de la position
@@ -31,20 +28,11 @@ export class CityMapComponent implements OnInit {
   }
   
   /**
-   * Retourne la position en pixel d'une coordonnée géographique sur la map
+   * Converti des coordonnées géographiques en coordonnées pixel
    * @param coordinate (Coordinate) Lat et Lng de la position
-   * @returns (XYPosition) Position en pixel (x, y)
+   * @returns (XYPosition) Position en pixel (x, y
    */
   getXYPosition = (coordinate: Coordinate): XYPosition => {
-    return {
-      x: (Math.abs(this.mapArgs?.topLeftCorner.lng - coordinate.lng) / this.deltaLng) * this.mapImg.width,
-      y: (Math.abs(this.mapArgs?.topLeftCorner.lat - coordinate.lat) / this.deltaLat) * this.mapImg.height
-    }
-  }
-
-
-
-  geoToPixel = (coordinate: Coordinate) => {
     
     // Get the flat coordinates of the top-left and bottom-right corners
     let topLeftFlat = this.geoToFlat(this.mapArgs.topLeftCorner.lng, this.mapArgs.topLeftCorner.lat);
@@ -76,23 +64,11 @@ export class CityMapComponent implements OnInit {
   }
 
 
-
-  getCoordinate = (position: XYPosition): Coordinate => {
-    return {
-      lat: this.mapArgs?.topLeftCorner.lat - ((position.y / this.mapImg.height) * this.deltaLat),
-      lng: this.mapArgs?.topLeftCorner.lng + ((position.x / this.mapImg.width) * this.deltaLng)
-    }
-  }
-
   constructor() { }
   ngOnInit(): void {
     // Define the map projection. This example uses the Web Mercator projection (EPSG:3857).
     const projection = '+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs';
     proj4.defs('EPSG:3857', projection);
-
-    //Calcul le delta entre les deux coins de la map
-    this.deltaLat = Math.abs(this.mapArgs?.topLeftCorner.lat - this.mapArgs?.bottomRightCorner.lat);
-    this.deltaLng = Math.abs(this.mapArgs?.topLeftCorner.lng -  this.mapArgs?.bottomRightCorner.lng);
 
 
     this.mapImg.src = 'assets/img/' + this.mapArgs?.img || '';
@@ -105,19 +81,13 @@ export class CityMapComponent implements OnInit {
       .map((poi: any) => {
         return {
           ...poi,
-          position: this.geoToPixel(poi.coordinate)
+          position: this.getXYPosition(poi.coordinate)
         }
       });
 
       console.log(this.pois);
     };
     
-    document.addEventListener('mousemove', (event: MouseEvent) => {
-      console.log('X: ' + event.clientX);
-      console.log('Y: ' + event.clientY);
-
-      console.log(this.getCoordinate({ x: event.clientX, y: event.clientY }));
-    });
   }
 }
 

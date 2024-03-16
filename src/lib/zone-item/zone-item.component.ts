@@ -39,8 +39,8 @@ OnConfirmChallenge() {
 
     this.pinImg.onload = () => {
       //Centre le point sur le milieu de l'image
-      this.centerdX = this.point.position.x - (50/2) + 16; //TODO changed 100 to img width in view
-      this.centerdY = this.point.position.y - 50 - 30; //TODO changed 100 to img height in view
+      this.centerdX = this.point.position.x - (50/2) ; //TODO changed 100 to img width in view
+      this.centerdY = this.point.position.y - (50/2); //TODO changed 100 to img height in view
     };
     this.HeaderContent = this.content?.HeaderContent ||"Unlocked"
     this.HeaderImg = this.content?.HeaderImg||""
