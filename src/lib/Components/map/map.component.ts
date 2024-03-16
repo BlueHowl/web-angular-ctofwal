@@ -1,9 +1,10 @@
-import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Coordinate } from '../../types/Coordinate';
-import { XYPosition } from '../../types/XYPosition';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Coordinate } from '../../../types/Coordinate';
+import { XYPosition } from '../../../types/XYPosition';
 import proj4 from 'proj4';
 import { Geolocation } from '@capacitor/geolocation';
 import { UserPinItemComponent } from '../user-pin-item/user-pin-item.component';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -12,10 +13,8 @@ import { UserPinItemComponent } from '../user-pin-item/user-pin-item.component';
   styleUrl: './map.component.css'
 })
 
-export class CityMapComponent implements OnInit, OnDestroy {
+export class CityMapComponent implements OnInit {
   @Input() mapArgs: any = null;
-
-  private locationListener: any;
 
   mapImg: any = new Image();
   pois: Array<any> = [];
@@ -68,10 +67,6 @@ export class CityMapComponent implements OnInit, OnDestroy {
     return { x: point[0], y: point[1] };
   }
 
-
-  /**
-   * Met à jour la position de l'utilisateur sur le composant enfant
-   */
   @ViewChild (UserPinItemComponent) userPin:UserPinItemComponent | undefined
   updateCurrentPosition = async (position: XYPosition) => {
     const currentUserPosition = this.getXYPosition({ lat: position.x, lng: position.y });
@@ -102,10 +97,10 @@ export class CityMapComponent implements OnInit, OnDestroy {
 
 
       //Met à jour la position de l'utilisateur
-      this.locationListener = Geolocation.watchPosition({
+      Geolocation.watchPosition({
         enableHighAccuracy: true,
         maximumAge: 1000,
-        timeout: 10000
+        //distanceFilter: 0,
       }, (position, err) => {
         if (err) {
           console.error('Error getting position:', err);
@@ -113,13 +108,10 @@ export class CityMapComponent implements OnInit, OnDestroy {
         }
   
         this.updateCurrentPosition({x: position!.coords.latitude, y: position!.coords.longitude});
+        console.log('Current position:', position?.coords.latitude, position?.coords.longitude);
       });
-
     };
-  }
-
-  ngOnDestroy(): void {
-    Geolocation.clearWatch({ id: this.locationListener });
+    
   }
 }
 

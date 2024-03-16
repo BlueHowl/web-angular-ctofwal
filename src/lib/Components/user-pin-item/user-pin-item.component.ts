@@ -1,5 +1,5 @@
 import { Component, Input, ChangeDetectorRef} from '@angular/core';
-import { XYPosition } from '../../types/XYPosition';
+import { XYPosition } from '../../../types/XYPosition';
 
 @Component({
   selector: 'user-pin-item',
