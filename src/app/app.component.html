@@ -1,23 +1,15 @@
-<script>
-  import { CityMapComponent } from "../map/map.component";
-  
-</script>
-
 
 <main class="main">
   <div class="content">
     <div class="city-map"></div>
     <city-map [mapArgs]="caroloMap" ></city-map>
+    <zone-item [xPosition]="1000" [yPosition]="200"></zone-item>
+
   </div>
 </main>
 
 
 <router-outlet />
-
-
-<style>
-  
-</style>
 
 <!--
   <div class="left-side">

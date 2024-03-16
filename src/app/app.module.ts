@@ -4,11 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CityMapComponent } from '../lib/map/map.component';
+import { ZoneItemComponent } from '../lib/zone-item/zone-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CityMapComponent
+    CityMapComponent,
+    ZoneItemComponent
   ],
   imports: [
     BrowserModule,
