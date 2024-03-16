@@ -1,5 +1,6 @@
 <script>
   import { CityMapComponent } from "../map/map.component";
+  import {} from "../zone-item/zone-item.component"
 </script>
 
 
@@ -7,16 +8,13 @@
   <div class="content">
     <div class="city-map"></div>
     <city-map></city-map>
+    <zone-item [xPosition]="100" [yPosition]="200"></zone-item>
+
   </div>
 </main>
 
 
 <router-outlet />
-
-
-<style>
-  
-</style>
 
 <!--
   <div class="left-side">
