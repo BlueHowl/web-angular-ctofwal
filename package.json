@@ -23,7 +23,6 @@
     "@capacitor/core": "^5.7.3",
     "@capacitor/geolocation": "^5.0.7",
     "@capacitor/ios": "^5.7.3",
-    "ngx-pinch-zoom": "^2.6.2",
     "primeng": "^17.11.0",
     "proj4": "^2.10.0",
     "rxjs": "~7.8.0",
