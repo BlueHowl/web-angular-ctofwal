@@ -14,13 +14,17 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { UserPinItemComponent } from '../lib/Components/user-pin-item/user-pin-item.component';
 import { ProfileComponent } from '../lib/profile/profile/profile.component';
 import { HomeComponent } from '../lib/home/home/home.component';
+import { SplashScreenComponent } from '../lib/splash-screen/splash-screen.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CityMapComponent,
     ZoneItemComponent,
-    UserPinItemComponent
+    UserPinItemComponent,
+    ProfileComponent,
+    HomeComponent,
+    SplashScreenComponent
   ],
   imports: [
     BrowserModule,
