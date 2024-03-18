@@ -1,0 +1,42 @@
+
+<img class="zone-container" 
+(click)="handleGetDetails()" [src]="pinImg.src" alt="Your Image" [style.left.px]="centerdX" [style.top.px]="centerdY">
+
+
+<p-dialog class="Mymodal" header="Header" [(visible)]="isModalVisible" [modal]="true" [style]="{ width:'50vw' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [dismissableMask]="true">
+    <ng-template pTemplate="header">
+        <div class="inline-flex align-items-center justify-content-center gap-2">
+            <div *ngIf="isBlackAndWhite">
+                <p-avatar image="{{HeaderImgChallenge}}" shape="circle" />
+                <span class="font-bold white-space-nowrap">{{HeaderContentChallenge}}</span>
+            </div>
+            <div *ngIf="!isBlackAndWhite">
+                <p-avatar image="{{HeaderImg}}" shape="circle" />
+                <span class="font-bold white-space-nowrap">{{HeaderContent}}</span>
+            </div>
+            
+        </div>
+    </ng-template>
+    <div *ngIf="isBlackAndWhite">
+        @for (item of BodyChallenge; track item.valueOf()) {
+            <p-checkbox [binary]="true" inputId="binary" value="{{item}}" label="{{item}}"></p-checkbox>
+        }
+    </div>
+    <div *ngIf="!isBlackAndWhite">
+        <div class="col-md-6">
+            <img class="img-content" src="{{HeaderImg}} ">
+        </div>
+        <div class="col-md-6">
+            <p>{{Body}}</p>
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <div *ngIf="isBlackAndWhite">
+            <p-button icon="pi pi-check" severity="info" (click)="OnConfirmChallenge()" label="Confirm" pAutoFocus [autofocus]="true"></p-button>
+            <p-button icon="pi pi-check" severity="secondary" (click)="isModalVisible = false" label="Quit" pAutoFocus [autofocus]="true"></p-button>
+        </div>
+        <div *ngIf="!isBlackAndWhite">
+            <p-button icon="pi pi-check" severity="info" (click)="isModalVisible = false" label="Ok" pAutoFocus [autofocus]="true"></p-button>
+        </div>
+    </ng-template>
+</p-dialog>

@@ -1,0 +1,11 @@
+  <div id="map-holder" class="content">
+    <img id="map" [src]="mapImg.src" alt="Image de la carte de la ville">
+    <div id="poi-list">
+      
+      @for (item of pois; track item.id) {
+        <zone-item [point]="item"></zone-item>
+      }
+      
+      <user-pin-item></user-pin-item>
+    </div>
+  </div>
